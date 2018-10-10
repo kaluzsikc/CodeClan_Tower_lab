@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.BitSet;
 
 public class Hotel {
 
@@ -35,7 +36,9 @@ public class Hotel {
     }
 
     public void checkInGuest(Guest guest, Bedroom bedroom) {
-        bedroom.addGuest(guest);
+        if(bedroom.getGuests() == 0 ){
+            bedroom.addGuest(guest);
+        }
     }
 
     public void checkOutGuest(Guest guest, Bedroom bedroom) {
@@ -49,5 +52,15 @@ public class Hotel {
 
     public double getTotalBill(Booking booking) {
        return booking.getBedroom().getRate() * booking.getNights();
+    }
+
+    public ArrayList getVacantBedrooms() {
+        ArrayList<Bedroom> vacantBedrooms = new ArrayList<>();
+        for (Bedroom bedroom : this.bedrooms){
+            if(bedroom.getGuests() == 0 ){
+                vacantBedrooms.add(bedroom);
+            }
+        }
+        return vacantBedrooms;
     }
 }
