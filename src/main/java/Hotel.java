@@ -41,4 +41,13 @@ public class Hotel {
     public void checkOutGuest(Guest guest, Bedroom bedroom) {
         bedroom.removeGuest(guest);
     }
+
+    public Booking bookRoom(Bedroom bedroom, int nights) {
+        Booking booking = new Booking(bedroom, 2);
+        return booking;
+    }
+
+    public double getTotalBill(Booking booking) {
+       return booking.getBedroom().getRate() * booking.getNights();
+    }
 }
